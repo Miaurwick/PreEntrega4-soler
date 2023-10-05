@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/Eggplant_Stage_6.ico"
+      type="image/x-icon"
+    />
+    <title>Rincón de las Hesperides.</title>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka&family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <!-- fonts -->
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <img src="/assets/Eggplant_Stage_6.ico" alt="" />
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarExample01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item active">
+                <a class="textoNav nav-link" aria-current="page" href="#"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="textoNav nav-link" href="#">Plantas</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Navbar -->
+        <!-- <a id="botonCarrito" class="carrito" href=""><i class="fa-solid fa-cart-shopping" style="color: #2b8c2d;"></i></a> -->
+        <!--Search-->
+        <div class="input-group rounded">
+            <input type="search" id="buscador" class="form-control rounded" placeholder="Que plantas desea?" aria-label="Search" aria-describedby="search-addon" />
+            <button id="buscar">Buscar</button>
+          </div>
+        <!--Search-->
+      </nav>
+    </header>
+    <main>
+        <div id="contenedorProductos"></div>
+        <div id="carrito"></div>
+    </main>
+    <script src="https://kit.fontawesome.com/947732587a.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
