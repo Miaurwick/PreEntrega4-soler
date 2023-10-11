@@ -10,15 +10,26 @@ body {
     font-family: 'Quicksand', sans-serif;
     background-color: #b6d7a8;
 }
-#carrito {
-    padding-top: 2em;
+#verOcultar {
     display: flex;
+    margin-right: 1em;
+    width: 9%;
+    height: 34px;
+    justify-content: center;
+    align-items: center;
+    border: transparent;
+    background-color: transparent;
+    font-size: 24px;
+}
+
+#carrito {
+    display: flex;
+    padding-top: 2em;
     flex-wrap: wrap;
     background-color: white;
     margin: 2%;
     border-radius: 2.2%;
     justify-content: center;
-
 }
 .textoNav {
     font-size: 120%;
@@ -62,6 +73,7 @@ body {
     align-items: center;
     padding: 4px;
     background-color:#b6d7a8;
+    border: transparent;
 }
 
 .parrafoPrecio, .categoria {
@@ -75,4 +87,7 @@ body {
     background-color: white;
     margin: 2%;
     border-radius: 2.2%;
+}
+.oculta {
+    display: none;
 }
