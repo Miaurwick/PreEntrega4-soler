@@ -161,20 +161,31 @@ function agregarProductoAlCarrito(productos, carrito, e) {
 }
 
 function renderizarCarrito(productosEnCarrito) {
-  let divCarrito = document.getElementById("carrito");
-  divCarrito.innerHTML = "";
+  
+  if(productosEnCarrito.length > 0){
+    let divCarrito = document.getElementById("carrito");
+    divCarrito.innerHTML = "";
+    
+    productosEnCarrito.forEach((producto) => {
+      let tarjetaCarrito = document.createElement("div");
+      tarjetaCarrito.innerHTML = `
+        <h3 class=titutloProducto >${producto.nombre}</h3>
+        <img class=productosImagenes src=./assets/${producto.imagen} />
+        <p class=parrafoPrecio >Precio: $${producto.precio}</p>
+        <p class=categoria >Categoria: ${producto.categoria}</p>
+    `;
+      
+      divCarrito.appendChild(tarjetaCarrito);
+    });
+      let boton = document.getElementById("comprar");
+      boton.addEventListener("click", finalizarCompra);
+  }
+}
 
-  productosEnCarrito.forEach((producto) => {
-    let tarjetaCarrito = document.createElement("div");
-    tarjetaCarrito.innerHTML = `
-      <h3 class=titutloProducto >${producto.nombre}</h3>
-      <img class=productosImagenes src=./assets/${producto.imagen} />
-      <p class=parrafoPrecio >Precio: $${producto.precio}</p>
-      <p class=categoria >Categoria: ${producto.categoria}</p>
-  `;
-
-    divCarrito.appendChild(tarjetaCarrito);
-  });
+function finalizarCompra() {
+  let carrito = document.getElementById("carrito");
+  carrito.innerHTML = ""
+  localStorage.removeItem("carrito");
 }
 
 let botonVerOcultar = document.getElementById("verOcultar");
@@ -183,7 +194,7 @@ botonVerOcultar.addEventListener("click", verOcultarCarrito);
 function verOcultarCarrito() {
   let carrito = document.getElementById("contenedorCarrito");
   let contenedorProductos = document.getElementById("contenedorPadre");
-   
-  carrito.classList.toggle("oculta")
-  contenedorProductos.classList.toggle("oculta")
+
+  carrito.classList.toggle("oculta");
+  contenedorProductos.classList.toggle("oculta");
 }

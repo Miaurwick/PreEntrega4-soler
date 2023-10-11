@@ -91,3 +91,18 @@ body {
 .oculta {
     display: none;
 }
+
+#comprar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 70px;
+    height: 3em;
+    margin-left: 4em;
+    margin-top: 1.5em;
+    padding-left: 20px;
+    font-size: large;
+    background: transparent;
+    border: transparent;
+}
