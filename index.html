@@ -45,7 +45,7 @@
           </div>
         </div>
         <!-- Navbar -->
-        <!-- <a id="botonCarrito" class="carrito" href=""><i class="fa-solid fa-cart-shopping" style="color: #2b8c2d;"></i></a> -->
+        <button id="verOcultar" class="carrito"><i class="fa-solid fa-cart-shopping" style="color: #2b8c2d;"></i></button>
         <!--Search-->
         <div class="input-group rounded">
             <input type="search" id="buscador" class="form-control rounded" placeholder="Que plantas desea?" aria-label="Search" aria-describedby="search-addon" />
@@ -55,8 +55,15 @@
       </nav>
     </header>
     <main>
+      <div id="contenedorPadre">
         <div id="contenedorProductos"></div>
-        <div id="carrito"></div>
+      </div>
+      <div class="oculta" id="contenedorCarrito">
+        <button id="comprar">comprar</button>
+        <div id="carrito">
+          <p>no hay productos en el carrito</p>
+        </div>
+      </div>
     </main>
     <script src="https://kit.fontawesome.com/947732587a.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
