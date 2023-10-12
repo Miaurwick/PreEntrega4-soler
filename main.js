@@ -109,6 +109,7 @@ function renderizarProducutos(productos, carrito) {
 
     contenedor.appendChild(card);
     let botonAgregarAlCarrito = document.getElementById(producto.id);
+    botonAgregarAlCarrito.addEventListener("click", () => mensaje("Prodcuto añadido al carrito", 1300))
     botonAgregarAlCarrito.addEventListener("click", (e) =>
       agregarProductoAlCarrito(productos, carrito, e)
     );
@@ -179,6 +180,7 @@ function renderizarCarrito(productosEnCarrito) {
     });
       let boton = document.getElementById("comprar");
       boton.addEventListener("click", finalizarCompra);
+      boton.addEventListener("click", () => mensaje("Gracias por comprar en el Rincon De Las Hsperides", 1300))
   }
 }
 
@@ -197,4 +199,18 @@ function verOcultarCarrito() {
 
   carrito.classList.toggle("oculta");
   contenedorProductos.classList.toggle("oculta");
+}
+
+function mensaje(text, duration) {
+   Toastify({
+   
+      text,
+      
+      duration,
+
+      style: {
+         background: "linear-gradient(to left, #00b09b, #96c93d)",
+       },
+      
+      }).showToast();
 }
