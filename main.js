@@ -94,24 +94,32 @@ function renderizarProducutos(productos, carrito) {
   let contenedor = document.getElementById("contenedorProductos");
   contenedor.innerHTML = "";
 
-  productos.forEach((producto) => {
+  productos.forEach(({ precio, imagen, nombre, categoria, id }) => {
     let card = document.createElement("div");
 
     card.className = "contorno";
 
     card.innerHTML = `
-      <h3 class=titutloProducto >${producto.nombre}</h3>
-      <img class=productosImagenes src=./assets/${producto.imagen} />
-      <p class=parrafoPrecio >Precio: $${producto.precio}</p>
-      <p class=categoria >Categoria: ${producto.categoria}</p>
-      <button class="btn" id=${producto.id} >Agregar al carrito</button>
+      <h3 class=titutloProducto >${nombre}</h3>
+      <img class=productosImagenes src=./assets/${imagen} />
+      <p class=parrafoPrecio >Precio: $${precio}</p>
+      <p class=categoria >Categoria: ${categoria}</p>
+      <button class="btn" id=${id} >Agregar al carrito</button>
       `;
 
     contenedor.appendChild(card);
-    let botonAgregarAlCarrito = document.getElementById(producto.id);
-    botonAgregarAlCarrito.addEventListener("click", () => mensaje("Prodcuto añadido al carrito", 1300))
+    let botonAgregarAlCarrito = document.getElementById(id);
+    botonAgregarAlCarrito.addEventListener("click", () =>
+      mensaje("Prodcuto añadido al carrito", 1300)
+    );
     botonAgregarAlCarrito.addEventListener("click", (e) =>
-      agregarProductoAlCarrito(productos, carrito, e)
+      agregarProductoAlCarrito(productos, carrito, e, {
+        id,
+        nombre,
+        precio,
+        imagen,
+        categoria,
+      })
     );
   });
 }
@@ -128,7 +136,12 @@ function filtrar(productos) {
 
 botonBuscar.addEventListener("click", () => filtrar(productos));
 
-function agregarProductoAlCarrito(productos, carrito, e) {
+function agregarProductoAlCarrito(
+  productos,
+  carrito,
+  e,
+  { id, nombre, precio, imagen, categoria }
+) {
   let productoBuscado = productos.find(
     (producto) => producto.id === Number(e.target.id)
   );
@@ -143,13 +156,13 @@ function agregarProductoAlCarrito(productos, carrito, e) {
         productoEnCarrito.unidades * productoEnCarrito.precioUnitario;
     } else {
       carrito.push({
-        id: productoBuscado.id,
-        nombre: productoBuscado.nombre,
-        precioUnitario: productoBuscado.precio,
+        id: id,
+        nombre: nombre,
+        precioUnitario: precio,
         unidades: 1,
-        subtotal: productoBuscado.precio,
-        imagen: productoBuscado.imagen,
-        categoria: productoBuscado.categoria,
+        subtotal: precio,
+        imagen: imagen,
+        categoria: categoria,
       });
     }
     productoBuscado.stock--;
@@ -162,31 +175,32 @@ function agregarProductoAlCarrito(productos, carrito, e) {
 }
 
 function renderizarCarrito(productosEnCarrito) {
-  
-  if(productosEnCarrito.length > 0){
+  if (productosEnCarrito.length > 0) {
     let divCarrito = document.getElementById("carrito");
     divCarrito.innerHTML = "";
-    
-    productosEnCarrito.forEach((producto) => {
+
+    productosEnCarrito.forEach(({ nombre, precio, categoria, imagen }) => {
       let tarjetaCarrito = document.createElement("div");
       tarjetaCarrito.innerHTML = `
-        <h3 class=titutloProducto >${producto.nombre}</h3>
-        <img class=productosImagenes src=./assets/${producto.imagen} />
-        <p class=parrafoPrecio >Precio: $${producto.precio}</p>
-        <p class=categoria >Categoria: ${producto.categoria}</p>
+        <h3 class=titutloProducto >${nombre}</h3>
+        <img class=productosImagenes src=./assets/${imagen} />
+        <p class=parrafoPrecio >Precio: $${precio}</p>
+        <p class=categoria >Categoria: ${categoria}</p>
     `;
-      
+
       divCarrito.appendChild(tarjetaCarrito);
     });
-      let boton = document.getElementById("comprar");
-      boton.addEventListener("click", finalizarCompra);
-      boton.addEventListener("click", () => mensaje("Gracias por comprar en el Rincon De Las Hsperides", 1300))
+    let boton = document.getElementById("comprar");
+    boton.addEventListener("click", finalizarCompra);
+    boton.addEventListener("click", () =>
+      mensaje("Gracias por comprar en el Rincon De Las Hsperides", 1300)
+    );
   }
 }
 
 function finalizarCompra() {
   let carrito = document.getElementById("carrito");
-  carrito.innerHTML = ""
+  carrito.innerHTML = "";
   localStorage.removeItem("carrito");
 }
 
@@ -202,15 +216,13 @@ function verOcultarCarrito() {
 }
 
 function mensaje(text, duration) {
-   Toastify({
-   
-      text,
-      
-      duration,
+  Toastify({
+    text,
 
-      style: {
-         background: "linear-gradient(to left, #00b09b, #96c93d)",
-       },
-      
-      }).showToast();
+    duration,
+
+    style: {
+      background: "linear-gradient(to left, #00b09b, #96c93d)",
+    },
+  }).showToast();
 }
