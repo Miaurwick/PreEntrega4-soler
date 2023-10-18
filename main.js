@@ -81,16 +81,12 @@ const productos = [
   },
 ];
 
-let carrito = [];
-let carritoRecuperado = localStorage.getItem("carrito");
-if (carritoRecuperado) {
-  carrito = JSON.parse(carritoRecuperado);
-}
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-renderizarProducutos(productos, carrito);
-renderizarCarrito(carrito);
+renderizarProducutos(productos);
+renderizarCarrito();
 
-function renderizarProducutos(productos, carrito) {
+function renderizarProducutos(productos) {
   let contenedor = document.getElementById("contenedorProductos");
   contenedor.innerHTML = "";
 
@@ -113,7 +109,7 @@ function renderizarProducutos(productos, carrito) {
       mensaje("Prodcuto añadido al carrito", 1300)
     );
     botonAgregarAlCarrito.addEventListener("click", (e) =>
-      agregarProductoAlCarrito(productos, carrito, e, {
+      agregarProductoAlCarrito(productos, e, {
         id,
         nombre,
         precio,
@@ -131,17 +127,14 @@ function filtrar(productos) {
   let productosFiltrados = productos.filter((productos) =>
     productos.nombre.includes(buscador.value)
   );
-  renderizarProducutos(productosFiltrados, carrito);
+  renderizarProducutos(productosFiltrados);
 }
 
 botonBuscar.addEventListener("click", () => filtrar(productos));
 
-function agregarProductoAlCarrito(
-  productos,
-  carrito,
-  e,
-  { id, nombre, precio, imagen, categoria }
-) {
+function agregarProductoAlCarrito(productos, e) {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
   let productoBuscado = productos.find(
     (producto) => producto.id === Number(e.target.id)
   );
@@ -156,13 +149,13 @@ function agregarProductoAlCarrito(
         productoEnCarrito.unidades * productoEnCarrito.precioUnitario;
     } else {
       carrito.push({
-        id: id,
-        nombre: nombre,
-        precioUnitario: precio,
+        id: productoBuscado.id,
+        nombre: productoBuscado.nombre,
+        precioUnitario: productoBuscado.precioUnitario,
         unidades: 1,
-        subtotal: precio,
-        imagen: imagen,
-        categoria: categoria,
+        subtotal: productoBuscado.precio,
+        imagen: productoBuscado.imagen,
+        categoria: productoBuscado.categoria,
       });
     }
     productoBuscado.stock--;
@@ -171,15 +164,16 @@ function agregarProductoAlCarrito(
     alert("No hay más stock del producto seleccionado");
   }
 
-  renderizarCarrito(carrito);
+  renderizarCarrito();
 }
 
-function renderizarCarrito(productosEnCarrito) {
-  if (productosEnCarrito.length > 0) {
+function renderizarCarrito() {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  if (carrito.length > 0) {
     let divCarrito = document.getElementById("carrito");
     divCarrito.innerHTML = "";
 
-    productosEnCarrito.forEach(({ nombre, precio, categoria, imagen }) => {
+    carrito.forEach(({ nombre, precio, categoria, imagen }) => {
       let tarjetaCarrito = document.createElement("div");
       tarjetaCarrito.innerHTML = `
         <h3 class=titutloProducto >${nombre}</h3>
@@ -190,12 +184,10 @@ function renderizarCarrito(productosEnCarrito) {
 
       divCarrito.appendChild(tarjetaCarrito);
     });
+  }
     let boton = document.getElementById("comprar");
     boton.addEventListener("click", finalizarCompra);
-    boton.addEventListener("click", () =>
-      mensaje("Gracias por comprar en el Rincon De Las Hsperides", 1300)
-    );
-  }
+    boton.addEventListener("click", () => mensaje("Gracias por comprar en el Rincon De Las Hesperides", 1300)); 
 }
 
 function finalizarCompra() {
@@ -214,15 +206,14 @@ function verOcultarCarrito() {
   carrito.classList.toggle("oculta");
   contenedorProductos.classList.toggle("oculta");
 }
-
 function mensaje(text, duration) {
   Toastify({
     text,
-
     duration,
-
+    stopOnFocus: true,
     style: {
       background: "linear-gradient(to left, #00b09b, #96c93d)",
     },
   }).showToast();
+  console.log(text)
 }

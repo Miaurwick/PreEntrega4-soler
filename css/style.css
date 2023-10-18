@@ -1,108 +1,108 @@
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Fredoka', sans-serif;
-    font-family: 'Quicksand', sans-serif;
-    background-color: #b6d7a8;
+  font-family: "Fredoka", sans-serif;
+  font-family: "Quicksand", sans-serif;
+  background-color: #b6d7a8;
 }
 #verOcultar {
-    display: flex;
-    margin-right: 1em;
-    width: 9%;
-    height: 34px;
-    justify-content: center;
-    align-items: center;
-    border: transparent;
-    background-color: transparent;
-    font-size: 24px;
+  display: flex;
+  margin-right: 1em;
+  width: 9%;
+  height: 34px;
+  justify-content: center;
+  align-items: center;
+  border: transparent;
+  background-color: transparent;
+  font-size: 24px;
 }
 
 #carrito {
-    display: flex;
-    padding-top: 2em;
-    flex-wrap: wrap;
-    background-color: white;
-    margin: 2%;
-    border-radius: 2.2%;
-    justify-content: center;
+  display: flex;
+  padding-top: 2em;
+  flex-wrap: wrap;
+  background-color: white;
+  margin: 2%;
+  border-radius: 2.2%;
+  justify-content: center;
 }
 .textoNav {
-    font-size: 120%;
-    color:#326e18
+  font-size: 120%;
+  color: #326e18;
 }
 #contenedorProductos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .btn {
-    display: flex;
-    margin-left: 25%;
-    margin-bottom: 1em;
-    color: #326e18;
-    border-radius: 10%;
+  display: flex;
+  margin-left: 25%;
+  margin-bottom: 1em;
+  color: #326e18;
+  border-radius: 10%;
 }
 
 .btn:hover {
-    color: blueviolet;
-    font-size: 120%;
+  color: blueviolet;
+  font-size: 120%;
 }
 
 .productosImagenes {
-    width: 300px;
-    height: 250px;
-    margin: 3px 2em;    
+  width: 300px;
+  height: 250px;
+  margin: 3px 2em;
 }
-.titutloProducto{
-    display: flex;
-    justify-content: center;
+.titutloProducto {
+  display: flex;
+  justify-content: center;
 }
 
 #buscar {
-    display: flex;
-    font-size: 20%;
-    margin-right: 10%;
-    margin-left: 5%;
-    border-radius: 10%;
-    align-items: center;
-    padding: 4px;
-    background-color:#b6d7a8;
-    border: transparent;
+  display: flex;
+  font-size: 20%;
+  margin-right: 10%;
+  margin-left: 5%;
+  border-radius: 10%;
+  align-items: center;
+  padding: 4px;
+  background-color: #b6d7a8;
+  border: transparent;
 }
 
-.parrafoPrecio, .categoria {
-   font-size: 20px;
-   margin-right: 2em;
-   display: flex;
-   justify-content: center;
+.parrafoPrecio,
+.categoria {
+  font-size: 20px;
+  margin-right: 2em;
+  display: flex;
+  justify-content: center;
 }
 
 .contorno {
-    background-color: white;
-    margin: 2%;
-    border-radius: 2.2%;
+  background-color: white;
+  margin: 2%;
+  border-radius: 2.2%;
 }
 .oculta {
-    display: none;
+  display: none;
 }
 
 #comprar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 70px;
-    height: 3em;
-    margin-left: 4em;
-    margin-top: 1.5em;
-    padding-left: 20px;
-    font-size: large;
-    background: transparent;
-    border: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 70px;
+  height: 3em;
+  margin-left: 4em;
+  margin-top: 1.5em;
+  padding-left: 20px;
+  font-size: large;
+  background: transparent;
+  border: transparent;
 }
