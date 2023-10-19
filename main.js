@@ -1,90 +1,20 @@
-const productos = [
-  {
-    nombre: "Spatiphyllum",
-    precio: 15.99,
-    imagen: "Spatiphyllum.jpg",
-    categoria: "sol",
-    id: 1,
-    stock: 20,
-  },
-  {
-    nombre: "Bonsai",
-    precio: 19.99,
-    imagen: "Bonsai.jpg",
-    categoria: "sol",
-    id: 2,
-    stock: 30,
-  },
-  {
-    nombre: "Alocasia",
-    precio: 12.49,
-    imagen: "Alocasia.jpg",
-    categoria: "Sombra",
-    id: 3,
-    stock: 12,
-  },
-  {
-    nombre: "Makoyana",
-    precio: 24.99,
-    imagen: "Calathea-Makoyana.jpg",
-    categoria: "sol",
-    id: 4,
-    stock: 15,
-  },
-  {
-    nombre: "Dracena",
-    precio: 29.99,
-    imagen: "Dracena-Lemon.jpg",
-    categoria: "sombra",
-    id: 5,
-    stock: 18,
-  },
-  {
-    nombre: "Kentya",
-    precio: 29.99,
-    imagen: "Kentya.jpg",
-    categoria: "sombra",
-    id: 6,
-    stock: 55,
-  },
-  {
-    nombre: "Monstera",
-    precio: 29.99,
-    imagen: "Monstera.jpg",
-    categoria: "sol",
-    id: 7,
-    stock: 20,
-  },
-  {
-    nombre: "Sansevieria",
-    precio: 29.99,
-    imagen: "Sansevieria.jpg",
-    categoria: "sombra",
-    id: 8,
-    stock: 60,
-  },
-  {
-    nombre: "Rowleyanus",
-    precio: 29.99,
-    imagen: "Senecio-Rowleyanus.jpg",
-    categoria: "sol",
-    id: 9,
-    stock: 14,
-  },
-  {
-    nombre: "Siempreviva",
-    precio: 29.99,
-    imagen: "siempreviva.jpg",
-    categoria: "sol",
-    id: 10,
-    stock: 42,
-  },
-];
+fetch("./productos.json")
+  .then((respuesta) => respuesta.json())
+  .then(productos =>  principal(productos))
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+function principal(productos) {
+  
+  let buscador = document.getElementById("buscador");
+  let botonBuscar = document.getElementById("buscar");
+  
+  botonBuscar.addEventListener("click", () => filtrar(productos, buscador));
+  
+  let botonVerOcultar = document.getElementById("verOcultar");
+  botonVerOcultar.addEventListener("click", verOcultarCarrito);
 
-renderizarProducutos(productos);
-renderizarCarrito();
+  renderizarProducutos(productos);
+  renderizarCarrito();
+}
 
 function renderizarProducutos(productos) {
   let contenedor = document.getElementById("contenedorProductos");
@@ -120,17 +50,12 @@ function renderizarProducutos(productos) {
   });
 }
 
-let buscador = document.getElementById("buscador");
-let botonBuscar = document.getElementById("buscar");
-
-function filtrar(productos) {
+function filtrar(productos, buscador) {
   let productosFiltrados = productos.filter((productos) =>
     productos.nombre.includes(buscador.value)
   );
   renderizarProducutos(productosFiltrados);
 }
-
-botonBuscar.addEventListener("click", () => filtrar(productos));
 
 function agregarProductoAlCarrito(productos, e) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -195,9 +120,6 @@ function finalizarCompra() {
   carrito.innerHTML = "";
   localStorage.removeItem("carrito");
 }
-
-let botonVerOcultar = document.getElementById("verOcultar");
-botonVerOcultar.addEventListener("click", verOcultarCarrito);
 
 function verOcultarCarrito() {
   let carrito = document.getElementById("contenedorCarrito");
